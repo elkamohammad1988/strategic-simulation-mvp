@@ -21,6 +21,14 @@ export function SignupForm() {
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
+
+    if (passwordStrength.score < 3) {
+      toast.error("Password too weak", {
+        description: "Use 8+ chars with uppercase, a number, and a symbol.",
+      });
+      return;
+    }
+
     setLoading(true);
 
     if (!isSupabaseConfigured()) {
@@ -37,19 +45,23 @@ export function SignupForm() {
         email,
         password,
         options: {
-          data: { full_name: name },
+          data: { full_name: name.trim().slice(0, 80) },
           emailRedirectTo: `${window.location.origin}/dashboard`,
         },
       });
       if (error) throw error;
-      toast.success("Account created", {
-        description: "Check your email for the verification link.",
+      // Always show the same outcome regardless of whether the email
+      // was already registered — prevents account enumeration.
+      toast.success("Check your email", {
+        description: "If this address is available, a verification link is on its way.",
       });
       router.push("/login");
-    } catch (err: unknown) {
-      const message =
-        err instanceof Error ? err.message : "Failed to sign up";
-      toast.error(message);
+    } catch {
+      // Same generic outcome on any failure
+      toast.success("Check your email", {
+        description: "If this address is available, a verification link is on its way.",
+      });
+      router.push("/login");
     } finally {
       setLoading(false);
     }

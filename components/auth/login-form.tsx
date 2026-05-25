@@ -41,10 +41,11 @@ export function LoginForm() {
       toast.success("Signed in");
       router.push(next);
       router.refresh();
-    } catch (err: unknown) {
-      const message =
-        err instanceof Error ? err.message : "Failed to sign in";
-      toast.error(message);
+    } catch {
+      // Generic message — never disclose whether the email exists
+      // or whether the password was the wrong piece. Prevents user
+      // enumeration attacks.
+      toast.error("Invalid email or password");
     } finally {
       setLoading(false);
     }

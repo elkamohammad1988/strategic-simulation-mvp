@@ -29,17 +29,16 @@ export function ResetForm() {
 
     try {
       const supabase = createClient();
-      const { error } = await supabase.auth.resetPasswordForEmail(email, {
+      await supabase.auth.resetPasswordForEmail(email, {
         redirectTo: `${window.location.origin}/login`,
       });
-      if (error) throw error;
-      setSent(true);
-      toast.success("Email sent");
-    } catch (err: unknown) {
-      const message =
-        err instanceof Error ? err.message : "Failed to send email";
-      toast.error(message);
+    } catch {
+      // Silently swallow — see below: we always show the same UI to
+      // avoid leaking whether the email is registered.
     } finally {
+      // Always show the same success state. Prevents account
+      // enumeration via the reset flow.
+      setSent(true);
       setLoading(false);
     }
   }
