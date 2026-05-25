@@ -1,25 +1,25 @@
-export function Logos() {
-  const companies = [
-    "Linear",
-    "Notion",
-    "Vercel",
-    "Stripe",
-    "Loom",
-    "Figma",
-    "Airbnb",
-  ];
+const companies = [
+  "Linear",
+  "Notion",
+  "Vercel",
+  "Stripe",
+  "Loom",
+  "Figma",
+  "Ramp",
+];
 
+export function Logos() {
   return (
-    <section className="border-y border-border bg-muted/30 py-10">
+    <section className="border-y border-border bg-muted/30 py-12 sm:py-14">
       <div className="container">
-        <p className="text-center text-sm text-muted-foreground">
-          Trusted by data teams at fast-growing companies
+        <p className="text-center text-[11px] font-medium uppercase tracking-[0.18em] text-muted-foreground">
+          Used daily by teams at
         </p>
-        <div className="mt-6 flex flex-wrap items-center justify-center gap-x-12 gap-y-4">
+        <div className="mt-7 grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-7 gap-x-6 gap-y-5 items-center">
           {companies.map((c) => (
             <span
               key={c}
-              className="text-xl font-bold text-muted-foreground/70 grayscale hover:grayscale-0 hover:text-foreground transition-all"
+              className="text-center text-base sm:text-lg font-semibold tracking-tight text-muted-foreground/80 transition-colors hover:text-foreground"
             >
               {c}
             </span>

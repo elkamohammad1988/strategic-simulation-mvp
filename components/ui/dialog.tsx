@@ -45,7 +45,7 @@ export function Dialog({
       <div className="absolute inset-0 bg-foreground/40 backdrop-blur-sm animate-fade-in" />
       <div
         className={cn(
-          "relative w-full max-w-md rounded-xl border border-border bg-white shadow-2xl overflow-hidden animate-fade-in",
+          "relative w-full max-w-md rounded-xl border border-border bg-card text-card-foreground shadow-2xl overflow-hidden animate-fade-in",
           className
         )}
         onClick={(e) => e.stopPropagation()}

@@ -10,78 +10,75 @@ import {
 const features = [
   {
     icon: Database,
-    title: "Connect anything",
+    title: "Connect in a minute",
     description:
-      "Stripe, Postgres, Shopify, GA4, HubSpot, and 40+ sources. Set up in under 60 seconds.",
-    accent: "from-indigo-500 to-violet-500",
+      "Stripe, Postgres, Shopify, GA4, HubSpot, and 40+ more. Drop in an API key, pick the tables, you're done.",
   },
   {
     icon: BarChart3,
-    title: "Beautiful dashboards",
+    title: "Dashboards that don't feel built by engineers",
     description:
-      "Drag-and-drop charts, KPIs, and tables. Designed by humans, customizable for everyone.",
-    accent: "from-violet-500 to-fuchsia-500",
+      "Drag charts, KPIs, and notes onto a canvas. Save layouts per team so finance and growth aren't fighting over the same view.",
   },
   {
     icon: Zap,
-    title: "Real-time refresh",
+    title: "Live, not yesterday's data",
     description:
-      "See data the moment it lands. Powered by streaming sync, not 24-hour batch jobs.",
-    accent: "from-fuchsia-500 to-rose-500",
+      "Numbers update the moment a payment lands or a user signs up. No 24-hour batch jobs, no stale screenshots in Slack.",
   },
   {
     icon: Bell,
-    title: "Smart alerts",
+    title: "Alerts you'd actually read",
     description:
-      "Get pinged on Slack the second your churn risk score crosses your threshold.",
-    accent: "from-amber-500 to-orange-500",
+      "Quiet by default — Pulse only pings when churn risk crosses your threshold or a metric breaks trend. No notification fatigue.",
   },
   {
     icon: Users,
-    title: "Built for teams",
+    title: "Made for small teams",
     description:
-      "Granular roles, audit logs, and SSO so the whole team can ship faster, safely.",
-    accent: "from-emerald-500 to-teal-500",
+      "Roles, audit logs, and shareable links. Drop a board in Slack and let the whole team click through, no seat upgrade needed.",
   },
   {
     icon: Shield,
-    title: "Enterprise-grade",
+    title: "Boring on security, on purpose",
     description:
-      "SOC 2 Type II, GDPR-ready, and end-to-end encrypted. Your data, never trained on.",
-    accent: "from-cyan-500 to-blue-500",
+      "SOC 2 Type II, GDPR, end-to-end encrypted. We don't train models on your data — ever, full stop.",
   },
 ];
 
 export function Features() {
   return (
-    <section id="features" className="py-24 lg:py-32">
+    <section id="features" className="py-20 sm:py-24 lg:py-32">
       <div className="container">
         <div className="mx-auto max-w-2xl text-center">
           <div className="inline-flex items-center rounded-full bg-accent px-3 py-1 text-xs font-medium text-accent-foreground">
-            Features
+            What's inside
           </div>
-          <h2 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">
-            Everything your team needs.
+          <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
+            Everything a small data team needs.
             <br />
-            <span className="text-muted-foreground">Nothing they don&apos;t.</span>
+            <span className="text-muted-foreground">
+              None of the enterprise bloat.
+            </span>
           </h2>
-          <p className="mt-4 text-lg text-muted-foreground">
-            Pulse replaces three tools and a half-built internal dashboard.
+          <p className="mt-4 text-base sm:text-lg text-muted-foreground">
+            Pulse replaces three SaaS tools, a half-built internal dashboard,
+            and that one Notion page nobody updates.
           </p>
         </div>
 
-        <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-14 grid gap-px overflow-hidden rounded-2xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
           {features.map((f) => (
             <div
               key={f.title}
-              className="group relative rounded-xl border border-border bg-white p-6 transition-all hover:shadow-md hover:-translate-y-0.5"
+              className="group relative bg-card p-6 sm:p-7 transition-colors hover:bg-muted/40"
             >
-              <div
-                className={`inline-flex h-11 w-11 items-center justify-center rounded-lg bg-gradient-to-br ${f.accent} text-white shadow-sm`}
-              >
-                <f.icon className="h-5 w-5" />
+              <div className="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary ring-1 ring-primary/15">
+                <f.icon className="h-[18px] w-[18px]" />
               </div>
-              <h3 className="mt-4 text-base font-semibold">{f.title}</h3>
+              <h3 className="mt-5 text-base font-semibold tracking-tight">
+                {f.title}
+              </h3>
               <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
                 {f.description}
               </p>

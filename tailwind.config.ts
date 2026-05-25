@@ -1,6 +1,7 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
+  darkMode: "class",
   content: [
     "./app/**/*.{ts,tsx}",
     "./components/**/*.{ts,tsx}",
@@ -14,38 +15,42 @@ const config: Config = {
     },
     extend: {
       colors: {
-        border: "hsl(220 13% 91%)",
-        input: "hsl(220 13% 91%)",
-        ring: "hsl(243 75% 59%)",
-        background: "hsl(0 0% 100%)",
-        foreground: "hsl(224 71% 4%)",
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
+        card: {
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
+        },
         muted: {
-          DEFAULT: "hsl(220 14% 96%)",
-          foreground: "hsl(220 9% 46%)",
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
         },
         primary: {
-          DEFAULT: "hsl(243 75% 59%)",
-          foreground: "hsl(0 0% 100%)",
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
         },
         secondary: {
-          DEFAULT: "hsl(220 14% 96%)",
-          foreground: "hsl(224 71% 4%)",
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
         },
         accent: {
-          DEFAULT: "hsl(243 100% 97%)",
-          foreground: "hsl(243 75% 35%)",
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))",
         },
         destructive: {
-          DEFAULT: "hsl(0 84% 60%)",
-          foreground: "hsl(0 0% 100%)",
+          DEFAULT: "hsl(var(--destructive))",
+          foreground: "hsl(var(--destructive-foreground))",
         },
         success: {
-          DEFAULT: "hsl(142 71% 45%)",
-          foreground: "hsl(0 0% 100%)",
+          DEFAULT: "hsl(var(--success))",
+          foreground: "hsl(var(--success-foreground))",
         },
         warning: {
-          DEFAULT: "hsl(38 92% 50%)",
-          foreground: "hsl(0 0% 100%)",
+          DEFAULT: "hsl(var(--warning))",
+          foreground: "hsl(var(--warning-foreground))",
         },
         chart: {
           1: "hsl(243 75% 59%)",
@@ -61,21 +66,31 @@ const config: Config = {
         sm: "0.375rem",
       },
       fontFamily: {
-        sans: ["Inter", "system-ui", "sans-serif"],
+        sans: ["var(--font-sans)", "system-ui", "sans-serif"],
       },
       keyframes: {
         "fade-in": {
-          from: { opacity: "0", transform: "translateY(8px)" },
+          from: { opacity: "0", transform: "translateY(6px)" },
           to: { opacity: "1", transform: "translateY(0)" },
         },
         "slide-in": {
           from: { transform: "translateX(-100%)" },
           to: { transform: "translateX(0)" },
         },
+        "slide-down": {
+          from: { opacity: "0", transform: "translateY(-6px)" },
+          to: { opacity: "1", transform: "translateY(0)" },
+        },
+        marquee: {
+          from: { transform: "translateX(0)" },
+          to: { transform: "translateX(-50%)" },
+        },
       },
       animation: {
-        "fade-in": "fade-in 0.4s ease-out",
+        "fade-in": "fade-in 0.35s cubic-bezier(0.22,1,0.36,1)",
         "slide-in": "slide-in 0.3s ease-out",
+        "slide-down": "slide-down 0.25s cubic-bezier(0.22,1,0.36,1)",
+        marquee: "marquee 40s linear infinite",
       },
     },
   },

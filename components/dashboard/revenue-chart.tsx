@@ -12,9 +12,18 @@ import {
 import type { TimeRange } from "@/lib/mock-data";
 import { generateRevenueSeries } from "@/lib/mock-data";
 import { formatCompact, formatCurrency } from "@/lib/utils";
+import { useTheme } from "@/lib/theme";
 
 export function RevenueChart({ range }: { range: TimeRange }) {
   const data = generateRevenueSeries(range);
+  const { resolved } = useTheme();
+  const isDark = resolved === "dark";
+
+  const gridColor = isDark ? "hsl(220 13% 22%)" : "hsl(220 13% 91%)";
+  const axisColor = isDark ? "hsl(220 9% 60%)" : "hsl(220 9% 46%)";
+  const tooltipBg = isDark ? "hsl(224 24% 10%)" : "hsl(0 0% 100%)";
+  const tooltipBorder = isDark ? "hsl(220 13% 22%)" : "hsl(220 13% 91%)";
+  const tooltipText = isDark ? "hsl(210 20% 96%)" : "hsl(224 71% 4%)";
 
   return (
     <div className="h-72">
@@ -30,16 +39,16 @@ export function RevenueChart({ range }: { range: TimeRange }) {
               <stop offset="100%" stopColor="hsl(326 78% 60%)" stopOpacity={0} />
             </linearGradient>
           </defs>
-          <CartesianGrid strokeDasharray="3 3" stroke="hsl(220 13% 91%)" vertical={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke={gridColor} vertical={false} />
           <XAxis
             dataKey="date"
-            stroke="hsl(220 9% 46%)"
+            stroke={axisColor}
             tick={{ fontSize: 11 }}
             tickLine={false}
             axisLine={false}
           />
           <YAxis
-            stroke="hsl(220 9% 46%)"
+            stroke={axisColor}
             tick={{ fontSize: 11 }}
             tickLine={false}
             axisLine={false}
@@ -48,10 +57,14 @@ export function RevenueChart({ range }: { range: TimeRange }) {
           <Tooltip
             contentStyle={{
               borderRadius: 8,
-              border: "1px solid hsl(220 13% 91%)",
+              border: `1px solid ${tooltipBorder}`,
+              backgroundColor: tooltipBg,
+              color: tooltipText,
               fontSize: 12,
-              boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
+              boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
             }}
+            labelStyle={{ color: tooltipText }}
+            itemStyle={{ color: tooltipText }}
             formatter={(value: number) => formatCurrency(value)}
           />
           <Area

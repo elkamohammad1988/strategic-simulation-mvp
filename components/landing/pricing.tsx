@@ -7,49 +7,48 @@ import { cn } from "@/lib/utils";
 
 const tiers = [
   {
-    name: "Starter",
+    name: "Solo",
     price: "$0",
     cadence: "forever",
-    description: "Everything you need to validate your first dashboard.",
+    description: "Run your first dashboard without thinking about budget.",
     features: [
       "1 workspace",
-      "Up to 3 data sources",
+      "3 data sources",
       "10K events / month",
       "Community support",
-      "Public dashboards",
+      "Public shareable dashboards",
     ],
-    cta: "Start for free",
+    cta: "Get started",
     highlight: false,
   },
   {
-    name: "Pro",
+    name: "Team",
     price: "$49",
-    cadence: "/ user / month",
-    description: "For teams shipping insights every week.",
+    cadence: "per user / month",
+    description: "For small teams shipping a new metric every week.",
     features: [
-      "Unlimited workspaces",
-      "Unlimited data sources",
+      "Unlimited workspaces & sources",
       "5M events / month",
       "Slack & email alerts",
-      "Scheduled reports",
-      "AI insight summaries",
+      "Scheduled email reports",
+      "AI summaries on every chart",
       "Priority support",
     ],
     cta: "Start 14-day trial",
     highlight: true,
   },
   {
-    name: "Enterprise",
-    price: "Custom",
-    cadence: "talk to us",
-    description: "Compliance, SSO, and dedicated infrastructure.",
+    name: "Business",
+    price: "Let's talk",
+    cadence: "custom",
+    description: "When SSO, audit logs, and procurement enter the chat.",
     features: [
-      "Everything in Pro",
-      "SSO + SCIM",
+      "Everything in Team",
+      "SSO + SCIM provisioning",
       "SOC 2 Type II report",
       "Dedicated support engineer",
-      "Custom data residency",
-      "On-premise option",
+      "Regional data residency",
+      "Self-hosted option",
     ],
     cta: "Contact sales",
     highlight: false,
@@ -58,46 +57,47 @@ const tiers = [
 
 export function Pricing() {
   return (
-    <section id="pricing" className="py-24 lg:py-32">
+    <section id="pricing" className="py-20 sm:py-24 lg:py-32">
       <div className="container">
         <div className="mx-auto max-w-2xl text-center">
           <div className="inline-flex items-center rounded-full bg-accent px-3 py-1 text-xs font-medium text-accent-foreground">
             Pricing
           </div>
-          <h2 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">
-            Simple pricing.
+          <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
+            Pay for what you use.
             <br />
-            <span className="text-muted-foreground">No surprises.</span>
+            <span className="text-muted-foreground">Not per-seat tax.</span>
           </h2>
-          <p className="mt-4 text-lg text-muted-foreground">
-            Start free, scale when you&apos;re ready. Cancel anytime.
+          <p className="mt-4 text-base sm:text-lg text-muted-foreground">
+            Start free. Upgrade when your usage grows, not before. Cancel anytime
+            from the billing page.
           </p>
         </div>
 
-        <div className="mt-16 grid gap-6 lg:grid-cols-3 items-stretch">
+        <div className="mt-14 grid gap-5 lg:grid-cols-3 items-stretch">
           {tiers.map((t) => (
             <div
               key={t.name}
               className={cn(
-                "relative rounded-2xl border bg-white p-8 flex flex-col",
+                "relative flex flex-col rounded-2xl border bg-card p-7 sm:p-8",
                 t.highlight
-                  ? "border-primary shadow-xl ring-1 ring-primary/20 scale-100 lg:scale-105"
+                  ? "border-primary/40 shadow-lg ring-1 ring-primary/10"
                   : "border-border"
               )}
             >
               {t.highlight && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-gradient-to-r from-indigo-600 to-fuchsia-600 px-4 py-1 text-xs font-semibold text-white shadow-md">
-                  Most popular
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-foreground px-3 py-1 text-[11px] font-medium uppercase tracking-[0.1em] text-background">
+                  Most teams pick this
                 </div>
               )}
 
               <div>
-                <h3 className="text-lg font-semibold">{t.name}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">
+                <h3 className="text-lg font-semibold tracking-tight">{t.name}</h3>
+                <p className="mt-2 text-sm text-muted-foreground leading-relaxed min-h-[2.5em]">
                   {t.description}
                 </p>
                 <div className="mt-6 flex items-baseline gap-2">
-                  <span className="text-4xl font-bold tracking-tight">
+                  <span className="text-[2.5rem] leading-none font-semibold tracking-tight">
                     {t.price}
                   </span>
                   <span className="text-sm text-muted-foreground">
@@ -106,11 +106,17 @@ export function Pricing() {
                 </div>
               </div>
 
-              <ul className="mt-6 space-y-3 flex-1">
+              <ul className="mt-7 space-y-3 flex-1">
                 {t.features.map((f) => (
                   <li key={f} className="flex items-start gap-3 text-sm">
-                    <Check className="mt-0.5 h-4 w-4 flex-none text-primary" />
-                    <span>{f}</span>
+                    <Check
+                      className={cn(
+                        "mt-0.5 h-4 w-4 flex-none",
+                        t.highlight ? "text-primary" : "text-foreground/70"
+                      )}
+                      strokeWidth={2.5}
+                    />
+                    <span className="text-foreground/90">{f}</span>
                   </li>
                 ))}
               </ul>
@@ -127,6 +133,11 @@ export function Pricing() {
             </div>
           ))}
         </div>
+
+        <p className="mt-10 text-center text-xs text-muted-foreground">
+          Prices in USD. Annual billing saves 20%. Startups under $5M ARR get
+          50% off Team for the first year — just ask.
+        </p>
       </div>
     </section>
   );

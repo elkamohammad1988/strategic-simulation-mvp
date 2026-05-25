@@ -129,7 +129,7 @@ export function CommandPalette({
     >
       <div className="absolute inset-0 bg-foreground/40 backdrop-blur-sm" />
       <div
-        className="relative w-full max-w-xl rounded-xl border border-border bg-white shadow-2xl overflow-hidden animate-fade-in"
+        className="relative w-full max-w-xl rounded-xl border border-border bg-card shadow-2xl overflow-hidden animate-fade-in"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center gap-3 border-b border-border px-4 py-3">
@@ -189,12 +189,12 @@ export function CommandPalette({
 
         <div className="flex items-center gap-3 border-t border-border bg-muted/30 px-4 py-2 text-[11px] text-muted-foreground">
           <span className="inline-flex items-center gap-1">
-            <kbd className="rounded border border-border bg-white px-1 font-mono">↑</kbd>
-            <kbd className="rounded border border-border bg-white px-1 font-mono">↓</kbd>
+            <kbd className="rounded border border-border bg-card px-1 font-mono">↑</kbd>
+            <kbd className="rounded border border-border bg-card px-1 font-mono">↓</kbd>
             navigate
           </span>
           <span className="inline-flex items-center gap-1">
-            <kbd className="rounded border border-border bg-white px-1 font-mono">↵</kbd>
+            <kbd className="rounded border border-border bg-card px-1 font-mono">↵</kbd>
             select
           </span>
           <span className="ml-auto">Pulse Analytics</span>

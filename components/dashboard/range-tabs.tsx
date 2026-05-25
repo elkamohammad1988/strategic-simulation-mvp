@@ -18,7 +18,7 @@ export function RangeTabs({
   onChange: (v: TimeRange) => void;
 }) {
   return (
-    <div className="inline-flex items-center rounded-lg border border-border bg-white p-0.5 shadow-sm">
+    <div className="inline-flex items-center rounded-lg border border-border bg-card p-0.5 shadow-sm">
       {ranges.map((r) => (
         <button
           key={r.value}
@@ -26,7 +26,7 @@ export function RangeTabs({
           className={cn(
             "px-3 py-1.5 text-xs font-medium rounded-md transition-colors",
             value === r.value
-              ? "bg-primary text-white shadow-sm"
+              ? "bg-primary text-primary-foreground shadow-sm"
               : "text-muted-foreground hover:text-foreground"
           )}
         >

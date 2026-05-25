@@ -7,12 +7,14 @@ import { Pricing } from "@/components/landing/pricing";
 import { FAQ } from "@/components/landing/faq";
 import { CTA } from "@/components/landing/cta";
 import { Footer } from "@/components/landing/footer";
+import { LandingJsonLd } from "@/components/landing/jsonld";
 
 export default function HomePage() {
   return (
     <>
+      <LandingJsonLd />
       <Navbar />
-      <main>
+      <main id="main">
         <Hero />
         <Logos />
         <Features />

@@ -1,20 +1,15 @@
-import { Sidebar } from "@/components/dashboard/sidebar";
-import { Topbar } from "@/components/dashboard/topbar";
+import type { Metadata } from "next";
+import { DashboardShell } from "@/components/dashboard/dashboard-shell";
+
+export const metadata: Metadata = {
+  title: { default: "Dashboard", template: "%s · Dashboard · Pulse" },
+  robots: { index: false, follow: false },
+};
 
 export default function DashboardLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <div className="flex h-screen overflow-hidden bg-muted/20">
-      <Sidebar />
-      <div className="flex flex-1 flex-col overflow-hidden">
-        <Topbar />
-        <main className="flex-1 overflow-y-auto scrollbar-thin">
-          <div className="container max-w-screen-2xl py-8">{children}</div>
-        </main>
-      </div>
-    </div>
-  );
+  return <DashboardShell>{children}</DashboardShell>;
 }

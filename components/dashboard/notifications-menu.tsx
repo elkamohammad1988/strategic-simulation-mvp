@@ -80,13 +80,13 @@ export function NotificationsMenu() {
         <span className="relative">
           <Bell className="h-5 w-5" />
           {unread > 0 && (
-            <span className="absolute -top-0.5 -right-0.5 h-2 w-2 rounded-full bg-rose-500 ring-2 ring-white" />
+            <span className="absolute -top-0.5 -right-0.5 h-2 w-2 rounded-full bg-rose-500 ring-2 ring-card" />
           )}
         </span>
       </Button>
 
       {open && (
-        <div className="absolute right-0 mt-2 w-80 rounded-lg border border-border bg-white shadow-lg z-50 animate-fade-in overflow-hidden">
+        <div className="absolute right-0 mt-2 w-80 rounded-lg border border-border bg-card shadow-lg z-50 animate-fade-in overflow-hidden">
           <div className="flex items-center justify-between border-b border-border px-4 py-3">
             <div>
               <div className="text-sm font-semibold">Notifications</div>
@@ -132,9 +132,18 @@ export function NotificationsMenu() {
 
 function NotificationRow({ item }: { item: Notification }) {
   const config = {
-    alert: { Icon: TrendingDown, cls: "text-rose-600 bg-rose-50" },
-    insight: { Icon: Sparkles, cls: "text-violet-600 bg-violet-50" },
-    report: { Icon: TrendingUp, cls: "text-emerald-600 bg-emerald-50" },
+    alert: {
+      Icon: TrendingDown,
+      cls: "text-rose-600 bg-rose-50 dark:text-rose-300 dark:bg-rose-500/15",
+    },
+    insight: {
+      Icon: Sparkles,
+      cls: "text-violet-600 bg-violet-50 dark:text-violet-300 dark:bg-violet-500/15",
+    },
+    report: {
+      Icon: TrendingUp,
+      cls: "text-emerald-600 bg-emerald-50 dark:text-emerald-300 dark:bg-emerald-500/15",
+    },
   }[item.type];
   const Icon = config.Icon;
 

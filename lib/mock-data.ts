@@ -106,60 +106,253 @@ export function generateTopProducts() {
   ];
 }
 
-export const DATA_SOURCES = [
+export type SourceStatus = "connected" | "available" | "error";
+export type SourceCategory =
+  | "Payments"
+  | "Analytics"
+  | "Database"
+  | "E-commerce"
+  | "CRM"
+  | "Marketing"
+  | "Communication";
+
+export interface DataSource {
+  id: string;
+  name: string;
+  description: string;
+  icon: string;
+  status: SourceStatus;
+  category: SourceCategory;
+  lastSync: string | null;
+  rowsSynced: number;
+  color: string;
+  authType: "oauth" | "apikey" | "database";
+}
+
+export const DATA_SOURCES: DataSource[] = [
   {
     id: "stripe",
     name: "Stripe",
     description: "Sync revenue, customers, and subscription metrics",
     icon: "💳",
-    status: "connected" as const,
+    status: "connected",
+    category: "Payments",
     lastSync: "2 minutes ago",
+    rowsSynced: 184290,
     color: "from-violet-500 to-violet-600",
+    authType: "oauth",
   },
   {
     id: "ga4",
     name: "Google Analytics 4",
     description: "Pull traffic, sessions, and conversion events",
     icon: "📊",
-    status: "connected" as const,
+    status: "connected",
+    category: "Analytics",
     lastSync: "5 minutes ago",
+    rowsSynced: 412800,
     color: "from-amber-500 to-orange-600",
+    authType: "oauth",
+  },
+  {
+    id: "segment",
+    name: "Segment",
+    description: "Unified customer data pipeline and event tracking",
+    icon: "🧭",
+    status: "error",
+    category: "Analytics",
+    lastSync: "3 hours ago",
+    rowsSynced: 28490,
+    color: "from-emerald-500 to-teal-600",
+    authType: "apikey",
   },
   {
     id: "postgres",
     name: "PostgreSQL",
     description: "Connect your application database directly",
     icon: "🐘",
-    status: "available" as const,
+    status: "available",
+    category: "Database",
     lastSync: null,
+    rowsSynced: 0,
     color: "from-blue-500 to-blue-600",
+    authType: "database",
+  },
+  {
+    id: "snowflake",
+    name: "Snowflake",
+    description: "Cloud data warehouse for analytical queries",
+    icon: "❄️",
+    status: "available",
+    category: "Database",
+    lastSync: null,
+    rowsSynced: 0,
+    color: "from-sky-500 to-cyan-600",
+    authType: "database",
   },
   {
     id: "shopify",
     name: "Shopify",
     description: "E-commerce orders, products, and customers",
     icon: "🛍️",
-    status: "available" as const,
+    status: "available",
+    category: "E-commerce",
     lastSync: null,
+    rowsSynced: 0,
     color: "from-emerald-500 to-emerald-600",
+    authType: "oauth",
   },
   {
     id: "hubspot",
     name: "HubSpot",
     description: "CRM contacts, deals, and marketing campaigns",
     icon: "🧲",
-    status: "available" as const,
+    status: "available",
+    category: "CRM",
     lastSync: null,
+    rowsSynced: 0,
     color: "from-orange-500 to-rose-600",
+    authType: "oauth",
+  },
+  {
+    id: "salesforce",
+    name: "Salesforce",
+    description: "Accounts, opportunities, and pipeline data",
+    icon: "☁️",
+    status: "available",
+    category: "CRM",
+    lastSync: null,
+    rowsSynced: 0,
+    color: "from-sky-500 to-blue-600",
+    authType: "oauth",
   },
   {
     id: "mixpanel",
     name: "Mixpanel",
     description: "Product analytics and user behavior events",
     icon: "📈",
-    status: "available" as const,
+    status: "available",
+    category: "Analytics",
     lastSync: null,
+    rowsSynced: 0,
     color: "from-purple-500 to-fuchsia-600",
+    authType: "apikey",
+  },
+  {
+    id: "mailchimp",
+    name: "Mailchimp",
+    description: "Email campaigns, lists, and engagement metrics",
+    icon: "✉️",
+    status: "available",
+    category: "Marketing",
+    lastSync: null,
+    rowsSynced: 0,
+    color: "from-yellow-500 to-amber-600",
+    authType: "apikey",
+  },
+  {
+    id: "slack",
+    name: "Slack",
+    description: "Send alerts and weekly reports to channels",
+    icon: "💬",
+    status: "available",
+    category: "Communication",
+    lastSync: null,
+    rowsSynced: 0,
+    color: "from-fuchsia-500 to-pink-600",
+    authType: "oauth",
+  },
+  {
+    id: "intercom",
+    name: "Intercom",
+    description: "Conversations, leads, and support insights",
+    icon: "💭",
+    status: "available",
+    category: "CRM",
+    lastSync: null,
+    rowsSynced: 0,
+    color: "from-indigo-500 to-blue-600",
+    authType: "oauth",
+  },
+];
+
+export interface ApiKey {
+  id: string;
+  name: string;
+  prefix: string;
+  masked: string;
+  created: string;
+  lastUsed: string;
+  scopes: ("read" | "write" | "admin")[];
+}
+
+export const API_KEYS: ApiKey[] = [
+  {
+    id: "k1",
+    name: "Production server",
+    prefix: "pls_live",
+    masked: "pls_live_4f8a••••••••••••3f5c",
+    created: "Mar 12, 2026",
+    lastUsed: "8 minutes ago",
+    scopes: ["read", "write"],
+  },
+  {
+    id: "k2",
+    name: "Staging",
+    prefix: "pls_test",
+    masked: "pls_test_91b3••••••••••f6a2",
+    created: "Apr 5, 2026",
+    lastUsed: "2 days ago",
+    scopes: ["read"],
+  },
+  {
+    id: "k3",
+    name: "Mobile app (read-only)",
+    prefix: "pls_live",
+    masked: "pls_live_a72f••••••••••9d3b",
+    created: "Apr 28, 2026",
+    lastUsed: "Never",
+    scopes: ["read"],
+  },
+];
+
+export interface Webhook {
+  id: string;
+  url: string;
+  events: string[];
+  status: "active" | "paused";
+  deliveries: number;
+  lastDelivery: string;
+  successRate: number;
+}
+
+export const WEBHOOKS: Webhook[] = [
+  {
+    id: "w1",
+    url: "https://api.acme.com/pulse/events",
+    events: ["revenue.threshold", "conversion.drop"],
+    status: "active",
+    deliveries: 1284,
+    lastDelivery: "12 min ago",
+    successRate: 99.7,
+  },
+  {
+    id: "w2",
+    url: "https://hooks.slack.com/services/T0G/B0E/wQp3v",
+    events: ["alert.triggered"],
+    status: "active",
+    deliveries: 78,
+    lastDelivery: "3 hours ago",
+    successRate: 100,
+  },
+  {
+    id: "w3",
+    url: "https://analytics.internal.acme.com/inbound",
+    events: ["weekly.report", "monthly.summary"],
+    status: "paused",
+    deliveries: 12,
+    lastDelivery: "Yesterday",
+    successRate: 91.6,
   },
 ];
 

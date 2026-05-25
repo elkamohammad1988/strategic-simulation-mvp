@@ -206,15 +206,15 @@ function FilePreview({
   onRemove: () => void;
 }) {
   return (
-    <div className="rounded-lg border border-border bg-white overflow-hidden">
+    <div className="rounded-lg border border-border bg-card overflow-hidden">
       <div className="flex items-center gap-4 p-4">
-        <div className="flex h-10 w-10 flex-none items-center justify-center rounded-lg bg-emerald-50 text-emerald-700">
+        <div className="flex h-10 w-10 flex-none items-center justify-center rounded-lg bg-emerald-50 text-emerald-700 dark:bg-emerald-500/15 dark:text-emerald-300">
           <FileSpreadsheet className="h-5 w-5" />
         </div>
         <div className="min-w-0 flex-1">
           <div className="flex items-center gap-2">
             <span className="font-medium truncate">{file.name}</span>
-            <CheckCircle2 className="h-4 w-4 flex-none text-emerald-600" />
+            <CheckCircle2 className="h-4 w-4 flex-none text-emerald-600 dark:text-emerald-400" />
           </div>
           <div className="mt-1 flex items-center gap-2 text-xs text-muted-foreground">
             <span>{(file.size / 1024).toFixed(1)} KB</span>
@@ -257,7 +257,7 @@ function FilePreview({
             <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3">
               Preview · first {file.preview.length} rows
             </div>
-            <div className="overflow-x-auto rounded-lg border border-border bg-white scrollbar-thin">
+            <div className="overflow-x-auto rounded-lg border border-border bg-card scrollbar-thin">
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b border-border bg-muted/40">
@@ -302,15 +302,15 @@ function ColumnBadge({ name, type }: { name: string; type: ColumnType }) {
   const config = {
     number: {
       icon: Hash,
-      cls: "bg-blue-50 text-blue-700 border-blue-200",
+      cls: "bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-500/15 dark:text-blue-300 dark:border-blue-500/20",
     },
     string: {
       icon: Type,
-      cls: "bg-violet-50 text-violet-700 border-violet-200",
+      cls: "bg-violet-50 text-violet-700 border-violet-200 dark:bg-violet-500/15 dark:text-violet-300 dark:border-violet-500/20",
     },
     date: {
       icon: CalendarIcon,
-      cls: "bg-amber-50 text-amber-700 border-amber-200",
+      cls: "bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-500/15 dark:text-amber-300 dark:border-amber-500/20",
     },
   }[type];
   const Icon = config.icon;
