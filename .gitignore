@@ -11,11 +11,10 @@ yarn-error.log*
 .pnpm-debug.log*
 
 .env*.local
-.env
 
 .vercel
 *.tsbuildinfo
 next-env.d.ts
 
-.vscode/
 .idea/
+config.bat

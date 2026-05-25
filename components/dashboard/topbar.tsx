@@ -66,7 +66,7 @@ export function Topbar({ onOpenMobileNav }: { onOpenMobileNav?: () => void }) {
 
   return (
     <>
-      <header className="flex h-16 items-center gap-2 sm:gap-3 border-b border-border bg-card/80 backdrop-blur supports-[backdrop-filter]:bg-card/70 px-3 sm:px-6">
+      <header className="relative z-40 flex h-16 items-center gap-2 sm:gap-3 border-b border-border bg-card/80 backdrop-blur supports-[backdrop-filter]:bg-card/70 px-3 sm:px-6">
         <button
           onClick={onOpenMobileNav}
           className="lg:hidden flex h-9 w-9 flex-none items-center justify-center rounded-md text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
